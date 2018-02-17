@@ -1,0 +1,437 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Client :  127.0.0.1
+-- Généré le :  Mer 13 Juillet 2016 à 13:33
+-- Version du serveur :  10.1.13-MariaDB
+-- Version de PHP :  7.0.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données :  `ayoub`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `IDCAT` int(11) NOT NULL,
+  `NOMCAT` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `categorie`
+--
+
+INSERT INTO `categorie` (`IDCAT`, `NOMCAT`) VALUES
+(1, 'micro-urbaines'),
+(2, 'sport'),
+(3, 'berlines de luxe'),
+(4, 'autos familiales'),
+(5, 'mini-citadines'),
+(6, 'citadines polyvalentes'),
+(7, 'routières');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `client`
+--
+
+CREATE TABLE `client` (
+  `CIN` varchar(25) NOT NULL,
+  `NUMPT` varchar(25) NOT NULL,
+  `NOMCLI` varchar(50) NOT NULL,
+  `PRENCLI` varchar(50) NOT NULL,
+  `DATENAIS` date DEFAULT NULL,
+  `VILLENAIS` varchar(40) DEFAULT NULL,
+  `ADRES` text NOT NULL,
+  `TEL1` varchar(20) NOT NULL,
+  `TEL2` varchar(20) DEFAULT NULL,
+  `IMGCLI` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`CIN`, `NUMPT`, `NOMCLI`, `PRENCLI`, `DATENAIS`, `VILLENAIS`, `ADRES`, `TEL1`, `TEL2`, `IMGCLI`) VALUES
+('DO1236545', '3', 'Kamal', 'ourdi', '1980-07-12', 'Meknes', 'ljnkjkjbkbj', '0632353928', '0632569864', NULL),
+('DO78994', '1', 'marya', 'slimani', '1970-07-10', 'Oujda', 'APT :12 CT/borgone', '068891578', '064851523', NULL),
+('HT0099', '1', 'rami', 'touzani', '1980-07-11', 'fes', 'R:rayhane /apt:85 ', '0635389485', '0637596485', NULL),
+('OJ894545', '2', 'yassin', 'stito', '1995-03-04', 'Meknes', 'pot 78 rue sofi', '0632357568', '0632353978', NULL),
+('PO78956', '2', 'fabio ', 'gonzliz', '1940-07-05', 'londne', 'T 78 rue nyrwigee', '063598783', '0632353928', NULL),
+('RT89566', '1', 'Mohamed', 'hdouchi', '1993-07-16', 'Meknes', 'Imarate rue :kadafi n:24', '0632353928', '0632357598', NULL),
+('Va12389', '1', 'AYOUB', 'Aitoukherraze', '1995-02-25', 'MIDELT', 'kljkl', '0611565456', '0632353928', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contrat`
+--
+
+CREATE TABLE `contrat` (
+  `IDCONT` varchar(25) NOT NULL,
+  `IDUTIL` varchar(25) NOT NULL,
+  `CIN` varchar(25) NOT NULL,
+  `MATRVH` varchar(25) NOT NULL,
+  `DATEDEBUT` datetime NOT NULL,
+  `DATEFIN` datetime NOT NULL,
+  `DUREE` int(11) NOT NULL,
+  `GPS` tinyint(1) DEFAULT NULL,
+  `SIGEBEBE` tinyint(1) DEFAULT NULL,
+  `CHAINESNAIGE` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `contrat`
+--
+
+INSERT INTO `contrat` (`IDCONT`, `IDUTIL`, `CIN`, `MATRVH`, `DATEDEBUT`, `DATEFIN`, `DUREE`, `GPS`, `SIGEBEBE`, `CHAINESNAIGE`) VALUES
+('Cont000000001', 'ADM001', 'HT0099', '568-A-72', '2016-07-13 00:47:47', '2016-07-17 00:47:47', 4, 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `facture`
+--
+
+CREATE TABLE `facture` (
+  `IDFACT` varchar(25) NOT NULL,
+  `IDCONT` varchar(25) NOT NULL,
+  `DATEFACT` date NOT NULL,
+  `MONTAFATCT` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `facture`
+--
+
+INSERT INTO `facture` (`IDFACT`, `IDCONT`, `DATEFACT`, `MONTAFATCT`) VALUES
+('fact001', 'Cont000000001', '2016-07-13', '1368');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `marque`
+--
+
+CREATE TABLE `marque` (
+  `IDMARQUE` varchar(25) NOT NULL,
+  `NOMMARQUE` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `marque`
+--
+
+INSERT INTO `marque` (`IDMARQUE`, `NOMMARQUE`) VALUES
+('mar0001', 'RENAULT'),
+('mar0002', 'TOYOTA'),
+('mar0003', 'VOLKSWAGEN'),
+('mar0004', 'MINI'),
+('mar0005', 'DACIA'),
+('mar0006', 'ALFA ROMEO'),
+('mar0007', 'KIA'),
+('mar0008', 'FIAT'),
+('mar0009', 'NISSAN'),
+('mar0011', 'ASTON MARTIN'),
+('mar0012', 'BMW'),
+('mar0014', 'SIAT'),
+('mar0015', 'BENTLEY'),
+('mar0016', 'AUDI'),
+('mar0017', 'CADILLAC'),
+('mar0018', 'CHEVROLET'),
+('mar0019', 'CHRYSLER'),
+('mar0020', 'CITROEN'),
+('mar0021', 'FORD USA'),
+('mar0022', 'HYUNDAI'),
+('mar0023', 'JEEP'),
+('mar0024', 'LAND ROVER'),
+('mar0025', 'LEXUS'),
+('mar0026', 'MITSUBISHI'),
+('mar0027', 'PEUGEOT'),
+('mar0028', 'SUZUKI'),
+('mar0029', 'SEAT'),
+('mar0030', 'OPEL'),
+('mar0031', 'MERCEDES');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `model`
+--
+
+CREATE TABLE `model` (
+  `IDMODEL` varchar(25) NOT NULL,
+  `IDMARQUE` varchar(25) NOT NULL,
+  `NOMMODEL` varchar(40) NOT NULL,
+  `ANNEEMODEL` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `model`
+--
+
+INSERT INTO `model` (`IDMODEL`, `IDMARQUE`, `NOMMODEL`, `ANNEEMODEL`) VALUES
+('mod00001', 'mar0001', 'GRAND SCENIC 4', '2016'),
+('mod00002', 'mar0001', 'KOLEOS 2', '2015'),
+('mod00003', 'mar0001', 'Clio', '2007'),
+('mod00004', 'mar0001', 'Kongo', '2015'),
+('mod00005', 'mar0005', 'LODGI', '2014'),
+('mod00006', 'mar0005', 'Dockere', '2015'),
+('mod00007', 'mar0005', 'LOGAN', '2007'),
+('mod00008', 'mar0007', 'Picanto', '2013'),
+('mod00009', 'mar0012', 'BMW A5', '2014'),
+('mod00010', 'mar0016', 'A4', '2012'),
+('mod00011', 'mar0027', '206+', '2001'),
+('mod00012', 'mar0027', '208 hdi', '2012'),
+('mod00013', 'mar0031', '190', '1999'),
+('mod00014', 'mar0031', 'Class A', '2010');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permit`
+--
+
+CREATE TABLE `permit` (
+  `NUMPT` varchar(25) NOT NULL,
+  `CATPT` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `permit`
+--
+
+INSERT INTO `permit` (`NUMPT`, `CATPT`) VALUES
+('1', 'permis A'),
+('10', 'permis DE'),
+('11', 'permis D1'),
+('12', 'permis D1E'),
+('2', 'permis B'),
+('3', 'permis B1'),
+('4', 'permis BE'),
+('5', 'permis C'),
+('6', 'permis CE'),
+('7', 'permis C1'),
+('8', 'permis C1E'),
+('9', 'permis D');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `revtion`
+--
+
+CREATE TABLE `revtion` (
+  `IDREV` varchar(25) NOT NULL,
+  `DATEFINAS` date NOT NULL,
+  `DATEVIST` date NOT NULL,
+  `KMTVID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `revtion`
+--
+
+INSERT INTO `revtion` (`IDREV`, `DATEFINAS`, `DATEVIST`, `KMTVID`) VALUES
+('rev000001', '2016-07-14', '2016-07-14', 5600),
+('rev000002', '2016-07-25', '2016-07-25', 100000),
+('rev000003', '2016-08-20', '2016-08-03', 12000),
+('rev000004', '2017-03-01', '2017-03-01', 10000),
+('rev000005', '2017-04-01', '2017-03-01', 60000),
+('rev000006', '2016-09-03', '2016-09-04', 30000),
+('rev000007', '2016-08-03', '2016-05-03', 100000),
+('rev000008', '2015-06-01', '2015-06-03', 1000);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilsateur`
+--
+
+CREATE TABLE `utilsateur` (
+  `IDUTIL` varchar(25) NOT NULL,
+  `NONUTIL` varchar(40) NOT NULL,
+  `PASSUTIL` varchar(10) NOT NULL,
+  `ROLE` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `utilsateur`
+--
+
+INSERT INTO `utilsateur` (`IDUTIL`, `NONUTIL`, `PASSUTIL`, `ROLE`) VALUES
+('ADM001', 'admin', 'admin', 'Admin'),
+('ADM002', 'ayoub', '123321', 'Admin'),
+('ADM003', 'Yoy@jahiz.com', 'toto', 'User'),
+('USR001', 'user', 'user', 'User'),
+('USR002', 'hicham', 'root', 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `vehicule`
+--
+
+CREATE TABLE `vehicule` (
+  `MATRVH` varchar(25) NOT NULL,
+  `IDREV` varchar(25) NOT NULL,
+  `IDCAT` int(11) NOT NULL,
+  `DATACHAT` date DEFAULT NULL,
+  `PRIXACHAT` double(10,2) NOT NULL,
+  `KMT` int(10) NOT NULL,
+  `MARQUEVH` varchar(25) NOT NULL,
+  `MODVH` varchar(25) NOT NULL,
+  `AC` varchar(25) DEFAULT NULL,
+  `NBPORT` int(11) DEFAULT NULL,
+  `NBPASSAGER` int(11) DEFAULT NULL,
+  `BOITVITESSE` varchar(25) DEFAULT NULL,
+  `PRIXJOURVH` double(10,2) NOT NULL,
+  `IMGVH` varchar(500) DEFAULT NULL,
+  `STATUTVH` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `vehicule`
+--
+
+INSERT INTO `vehicule` (`MATRVH`, `IDREV`, `IDCAT`, `DATACHAT`, `PRIXACHAT`, `KMT`, `MARQUEVH`, `MODVH`, `AC`, `NBPORT`, `NBPASSAGER`, `BOITVITESSE`, `PRIXJOURVH`, `IMGVH`, `STATUTVH`) VALUES
+('201-A-61', 'rev000008', 3, '2015-03-04', 486957.00, 3000, 'mar0001', 'mod00002', 'Airco semi-automatique', 5, 5, 'automatique', 50.00, 'C:\\Users\\Lenovo\\Desktop\\image\\9.jpg', 0),
+('259-A-20', 'rev000007', 4, '2012-02-03', 20215.00, 5694, 'mar0001', 'mod00004', 'Airco manuel', 5, 7, 'automatique', 60.00, 'C:\\Users\\Lenovo\\Desktop\\image\\8.jpg', 0),
+('4786-A-20', 'rev000001', 2, '2011-03-04', 530003.00, 1200, 'mar0001', 'mod00003', 'Airco automatique', 4, 5, 'mécanique', 150.00, 'C:\\Users\\Lenovo\\Desktop\\image\\1.jpg', 1),
+('568-A-72', 'rev000003', 3, '2000-05-07', 63248.00, 9000, 'mar0031', 'mod00013', 'non disponible', 5, 6, 'mécanique robotisée', 300.00, 'C:\\Users\\Lenovo\\Desktop\\image\\5.jpg', 0),
+('634-D-61', 'rev000004', 3, '2016-01-03', 800000.00, 100, 'mar0031', 'mod00014', 'Airco automatique', 3, 4, 'automatique', 400.00, 'C:\\Users\\Lenovo\\Desktop\\image\\6.jpg', 1),
+('694-A-20', 'rev000005', 4, '2013-08-03', 486954.00, 30000, 'mar0005', 'mod00005', 'Airco automatique', 6, 7, 'automatique', 199.00, 'C:\\Users\\Lenovo\\Desktop\\image\\4.jpg', 1),
+('789-A-54', 'rev000006', 2, '2011-01-03', 584612.00, 2000, 'mar0027', 'mod00012', 'Airco semi-automatique', 3, 4, 'mécanique', 180.00, 'C:\\Users\\Lenovo\\Desktop\\image\\7.jpg', 1),
+('8789-B-20', 'rev000002', 4, '2011-05-03', 68945.50, 8000, 'mar0001', 'mod00001', 'Airco semi-automatique', 6, 7, 'automatique', 250.00, 'C:\\Users\\Lenovo\\Desktop\\image\\2.jpg', 1);
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`IDCAT`);
+
+--
+-- Index pour la table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`CIN`),
+  ADD KEY `FK_POSSEDER` (`NUMPT`);
+
+--
+-- Index pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD PRIMARY KEY (`IDCONT`),
+  ADD KEY `FK_AVOIR` (`CIN`),
+  ADD KEY `FK_AVOIR1` (`MATRVH`),
+  ADD KEY `FK_GERE` (`IDUTIL`);
+
+--
+-- Index pour la table `facture`
+--
+ALTER TABLE `facture`
+  ADD PRIMARY KEY (`IDFACT`),
+  ADD KEY `FK_DONNE_LIEU_A2` (`IDCONT`);
+
+--
+-- Index pour la table `marque`
+--
+ALTER TABLE `marque`
+  ADD PRIMARY KEY (`IDMARQUE`);
+
+--
+-- Index pour la table `model`
+--
+ALTER TABLE `model`
+  ADD PRIMARY KEY (`IDMODEL`),
+  ADD KEY `FK_CONSERNER1` (`IDMARQUE`);
+
+--
+-- Index pour la table `permit`
+--
+ALTER TABLE `permit`
+  ADD PRIMARY KEY (`NUMPT`);
+
+--
+-- Index pour la table `revtion`
+--
+ALTER TABLE `revtion`
+  ADD PRIMARY KEY (`IDREV`);
+
+--
+-- Index pour la table `utilsateur`
+--
+ALTER TABLE `utilsateur`
+  ADD PRIMARY KEY (`IDUTIL`);
+
+--
+-- Index pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD PRIMARY KEY (`MATRVH`),
+  ADD KEY `FK_APPARTIENT` (`IDCAT`),
+  ADD KEY `FK_CONSERNER` (`IDREV`),
+  ADD KEY `FK_CONSERNER2` (`MARQUEVH`),
+  ADD KEY `FK_CONSERNER3` (`MODVH`);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `client`
+--
+ALTER TABLE `client`
+  ADD CONSTRAINT `FK_POSSEDER` FOREIGN KEY (`NUMPT`) REFERENCES `permit` (`NUMPT`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `contrat`
+--
+ALTER TABLE `contrat`
+  ADD CONSTRAINT `FK_AVOIR` FOREIGN KEY (`CIN`) REFERENCES `client` (`CIN`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_AVOIR1` FOREIGN KEY (`MATRVH`) REFERENCES `vehicule` (`MATRVH`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_GERE` FOREIGN KEY (`IDUTIL`) REFERENCES `utilsateur` (`IDUTIL`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `facture`
+--
+ALTER TABLE `facture`
+  ADD CONSTRAINT `FK_DONNE_LIEU_A2` FOREIGN KEY (`IDCONT`) REFERENCES `contrat` (`IDCONT`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `model`
+--
+ALTER TABLE `model`
+  ADD CONSTRAINT `FK_CONSERNER1` FOREIGN KEY (`IDMARQUE`) REFERENCES `marque` (`IDMARQUE`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `vehicule`
+--
+ALTER TABLE `vehicule`
+  ADD CONSTRAINT `FK_APPARTIENT` FOREIGN KEY (`IDCAT`) REFERENCES `categorie` (`IDCAT`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_CONSERNER` FOREIGN KEY (`IDREV`) REFERENCES `revtion` (`IDREV`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_CONSERNER2` FOREIGN KEY (`MARQUEVH`) REFERENCES `marque` (`IDMARQUE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_CONSERNER3` FOREIGN KEY (`MODVH`) REFERENCES `model` (`IDMODEL`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
